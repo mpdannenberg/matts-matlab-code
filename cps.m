@@ -1,4 +1,4 @@
-function [ yhat, r2, stats ] = cps( y, X, years )
+function [ yhat, r2, stats ] = cps( y, X )
 % Composite-plus-scale: proxies weighted by r^2
 %   y: Instrumental climate series (fill with NaNs for reconstruction)
 %   X: Array of proxies (same number of rows as y, any number of columns)

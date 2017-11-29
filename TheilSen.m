@@ -10,6 +10,9 @@ function [ a, b, p, sims ] = TheilSen( x, y , showplot, nsims)
 if exist('nsims')~=1
     nsims = 10000;
 end
+if exist('showplot')~=1
+    showplot = 0;
+end
 
 n = length(x);
 

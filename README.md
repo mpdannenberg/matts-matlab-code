@@ -50,3 +50,30 @@ MATLAB code developed by Matt Dannenberg
   * vpd: monthly mean vapor pressure deficit (kPa) [12 x number of years]
   * G: monthly ground heat flux (W m-2 ???) [12 x number of years]
   * Rs: monthly incident solar radiation (W m-2 ???) [12 x number of years]
+
+## fdr.m
+### Control the false discovery rate in multiple hypothesis testing and conduct field significance test (Wilks 2006, 2016)
+#### Inputs:
+  * ps: vector of _p_-values from multiple hypothesis tests
+  * _q_: global significance level (default: 0.05)
+#### Outputs:
+  * test: significance of "field" at alpha=*q* (0: not significant; 1: significant)
+  * pfdr: p-value for local significance tests controlling false discovery rate at alpha=*q*
+
+## lmInteractionCV.m
+### Compare predictions from additive vs. interaction multiple regression models using cross-validation
+#### Inputs:
+  * y: response variable
+  * x1: predictor variable #1
+  * x2: predictor variable #2
+#### Outputs:
+  * h: test of interaction importance (0: not important interaction, 1: important interaction)
+  * S: structure of additive & interaction models + statistics (RMSE, Nash-Sutcliffe model efficiency, R^2, p-value, effect sizes)
+
+## make_cmap.m
+### Linearly interpolate MATLAB rgb colormap to *n* levels
+#### Inputs:
+  * c: [n x 3] array of RGB "endmember" values to interpolate between
+  * n: number of desired levels in the colormap
+#### Outputs:
+  * cn: updated colormap with *n* levels

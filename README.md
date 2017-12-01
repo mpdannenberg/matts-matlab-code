@@ -112,7 +112,7 @@ MATLAB code developed by Matt Dannenberg
   * RMSE: root mean squared error
 
 ## spi.m
-### Calculate standardized precipitation index (SPI) from precipitation data from a given month using a gamma distribution
+### Calculate standardized precipitation index (SPI) (McKee 1993) from precipitation data from a given month using a gamma distribution.
 #### Inputs:
   * precip: precipitation for given month (can be aggregated over previous *n* months for longer time-scale SPI)
   * (optional) dist: parameters of the gamma distribution
@@ -123,7 +123,7 @@ MATLAB code developed by Matt Dannenberg
   * q: probabiliy of zero precipitation during input month
 
 ## TheilSen.m
-### Estimates linear model using the nonparametric Theil-Sen regression method, with significance estimated using Monte Carlo resampling of observed series.
+### Estimates linear model using the nonparametric Theil-Sen regression method (Wilcox 2005), with significance estimated using Monte Carlo resampling of observed series.
 #### Inputs:
   * x: predictor variable
   * y: response variable
@@ -145,3 +145,28 @@ MATLAB code developed by Matt Dannenberg
   * bxplt: Display boxplot on top of violin? (0 [default] = no, 1 = yes)
 #### Outputs:
   * h: figure handle
+
+
+## References
+
+
+Allen, R. G., Pereira, L. S., Raes, D., & Smith, M. (1998). Crop evapotranspiration-Guidelines for computing crop water requirements-FAO Irrigation and drainage paper 56. FAO, Rome, 300(9), D05109.
+
+
+McCarroll, D., Young, G. H., & Loader, N. J. (2015). Measuring the skill of variance-scaled climate reconstructions and a test for the capture of extremes. The Holocene, 25(4), 618–626. https://doi.org/10.1177/0959683614565956.
+
+
+McKee, T. B., Doesken, N. J., & Kleist, J. (1993). The relationship of drought frequency and duration to time scales. In Preprints from the Eighth Conference on Applied Climatology (pp. 179–184). Anaheim, CA: American Meteorological Society.
+
+
+Nash, J. E., & Sutcliffe, J. V. (1970). River flow forecasting through conceptual models Part I - A discussion of principles. Journal of Hydrology, 10, 282–290. https://doi.org/10.1016/0022-1694(70)90255-6
+
+
+Wilcox, R. R. (2005). Introduction to Robust Estimation and Hypothesis Testing (2nd ed.). San Diego, CA: Academic Press.
+
+
+Wilks, D. S. (2006). On “field significance” and the false discovery rate. Journal of Applied Meteorology and Climatology, 45, 1181–1189. https://doi.org/10.1175/JAM2404.1
+
+
+Wilks, D. S. (2016). “The stippling shows statistically significant grid points”: How research results are routinely overstated and overinterpreted, and what to do about it. Bulletin of the American Meteorological Society, 97, 2263–2274.
+

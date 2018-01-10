@@ -8,11 +8,11 @@ function [ CMmax, CMright, statsMax, statsRight ] = fuzzyAA( ref, class, w )
 % based on Olofsson et al. 2014, RSE
 
 % Inputs:
-%   1) Array with reference labels for each class (for a total of p
-%   classes) at each point (for a total of n points) - n x p array
+%   1) Array with reference labels for each class (for a total of q
+%   classes) at each point (for a total of n points) - n x q array
 %   2) Column vector (of length n) with class labels assigned to each
-%   point, with class labels ranging from 1-p
-%   3) Row vector (of length p) with proportions of total study area mapped
+%   point, with class labels ranging from 1-q
+%   3) Row vector (of length q) with proportions of total study area mapped
 %   as each class
 
 % Note: rows of (1) and (2) must correspond to the same point

@@ -60,6 +60,18 @@ MATLAB code developed by Matt Dannenberg
   * test: significance of "field" at alpha=*q* (0: not significant; 1: significant)
   * pfdr: *p*-value for local significance tests controlling false discovery rate at alpha=*q*
 
+## fuzzyAA.m
+### Conduct fuzzy accuracy assessment using linguistic scale proposed by Gopal & Woodcock (1994) and assessment methods described by Olofsson et al. (2014)
+#### Inputs:
+  * ref: Array with reference labels for each class (for a total of q classes) at each point (for a total of n points) [n x q array]
+  * class: Column vector (of length n) with class labels assigned to each point, with class labels ranging from 1-q
+  * Row vector (of length q) with proportions of total study area mapped as each class
+#### Outputs:
+  * CMmax: confusion matrix based on BEST class label
+  * CMright: confusion matrix based on ACCEPTABLE class label
+  * statsMax: structure with statistics (overall accuracy, user's accuracy, etc.) based on BEST class label
+  * statsRight: structure with statistics (overall accuracy, user's accuracy, etc.) based on ACCEPTABLE class label
+
 ## lmInteractionCV.m
 ### Compare predictions from additive vs. interaction multiple regression models using cross-validation
 #### Inputs:
@@ -153,6 +165,9 @@ MATLAB code developed by Matt Dannenberg
 Allen, R. G., Pereira, L. S., Raes, D., & Smith, M. (1998). Crop evapotranspiration-Guidelines for computing crop water requirements-FAO Irrigation and drainage paper 56. FAO, Rome, 300(9), D05109.
 
 
+Gopal, S. & C. Woodcock (1994). Theory and methods for accuracy assessment of thematic maps using fuzzy sets. *Photogrammetric Engineering and Remote Sensing*, 60(2), 181-188.
+
+
 McCarroll, D., Young, G. H., & Loader, N. J. (2015). Measuring the skill of variance-scaled climate reconstructions and a test for the capture of extremes. *The Holocene*, 25(4), 618–626. https://doi.org/10.1177/0959683614565956.
 
 
@@ -160,6 +175,9 @@ McKee, T. B., Doesken, N. J., & Kleist, J. (1993). The relationship of drought f
 
 
 Nash, J. E., & Sutcliffe, J. V. (1970). River flow forecasting through conceptual models Part I - A discussion of principles. *Journal of Hydrology*, 10, 282–290. https://doi.org/10.1016/0022-1694(70)90255-6
+
+
+Olofsson, P. et al. (2014). Good practices for estimating area and assessing accuracy of land change. *Remote Sensing of Environment*, 148, 42-57.
 
 
 Wilcox, R. R. (2005). *Introduction to Robust Estimation and Hypothesis Testing* (2nd ed.). San Diego, CA: Academic Press.

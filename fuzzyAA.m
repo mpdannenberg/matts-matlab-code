@@ -1,4 +1,4 @@
-function [ CMmax, CMright, statsMax, statsRight ] = fuzzyAA( ref, class, w )
+function [ CMmax, CMright, statsMax, statsRight ] = fuzzyAA( ref, class, w, Ni )
 % Convert linguistic labels (1-5 scale) for set of sample points to two
 % confusion matrices (based on Gopal & Woodcock 1994, PE&RS):
 %   1) matrix based on best label
@@ -8,12 +8,13 @@ function [ CMmax, CMright, statsMax, statsRight ] = fuzzyAA( ref, class, w )
 % based on Olofsson et al. 2014, RSE
 
 % Inputs:
-%   1) Array with reference labels for each class (for a total of q
+%   1) ref: Array with reference labels for each class (for a total of q
 %   classes) at each point (for a total of n points) - n x q array
-%   2) Column vector (of length n) with class labels assigned to each
+%   2) class: Column vector (of length n) with class labels assigned to each
 %   point, with class labels ranging from 1-q
-%   3) Row vector (of length q) with proportions of total study area mapped
+%   3) w: Row vector (of length q) with proportions of total study area mapped
 %   as each class
+%   4) Ni: marginal total number of pixels mapped to each class
 
 % Note: rows of (1) and (2) must correspond to the same point
 
@@ -24,6 +25,7 @@ n = size(ref, 1); % number of points
 CMmax = NaN(q, q);
 maxPoints = NaN(n, 1);
 ni = NaN(1, q); % number of sample points for each class
+nij = NaN(q, q); % marginal totals for confusion matrix
 for i = 1:n
     if sum(~isnan(ref(i, :)))>0; maxPoints(i) = find(ref(i, :) == max(ref(i, :))); end
 end
@@ -35,6 +37,7 @@ for i = 1:q
     
     for j = 1:q
         
+        nij(i, j) = sum(temp(:,1)==j);
         CMmax(i, j) = w(i) * sum(temp(:,1)==j) / ni(i);
         
     end
@@ -51,6 +54,7 @@ statsMax.PA_se = NaN(1, q);
 statsMax.fc_se = NaN(1, q);
 statsMax.n = ni; % sample points in each class
 statsMax.w = w; % proportion mapped to each class
+statsMax.RawConfusionMatrix = nij;
 
 for i=1:q
         
@@ -79,6 +83,18 @@ statsMax.OA_se = sqrt(sum(temp)); clear temp;
 statsMax.UA_se = sqrt(statsMax.UA .* (1-statsMax.UA) ./ (ni - 1));
 
 % Yikes... not sure what to make of SE estimates for PA (Eq. 7)
+Nj = NaN(1,q);
+for j = 1:q
+    
+    Nj(j) = sum(Ni'./ni' .* nij(:, j)); % estimated marginal total number of pixels of reference class j
+    
+    idx = 1:7;
+    temp1 = (Ni(j)^2 * (1-statsMax.PA(j))^2 * statsMax.UA(j) * (1-statsMax.UA(j))) / (ni(j)-1);
+    temp2 = statsMax.PA(j)^2 * sum( Ni(idx~=j).^2 .* (nij(idx~=j, j)' ./ ni(idx~=j)) .* (1-(nij(idx~=j, j)' ./ ni(idx~=j))) ./ (ni(idx~=j)-1) );
+    
+    statsMax.PA_se(j) = sqrt(1/Nj(j)^2 * (temp1 + temp2));
+    
+end
 
 % Estimate standard error of proportional area for each class (Eq. 10)
 for k = 1:q
@@ -96,6 +112,7 @@ end
 CMright = NaN(q, q);
 % rightPoints = NaN(n, 1);
 ni = NaN(1, q); % number of sample points for each class
+nij = NaN(q, q);
 % for i = 1:n
 %     if sum(~isnan(ref(i, :)))>0; rightPoints(i) = find(ref(i, :) == max(ref(i, :))); end
 % end
@@ -117,6 +134,7 @@ for i = 1:q
     
     for j = 1:q
         
+        nij(i, j) = sum(temp(:,1)==j);
         CMright(i, j) = w(i) * sum(temp(:,1)==j) / ni(i);
         
     end
@@ -133,6 +151,7 @@ statsRight.PA_se = NaN(1, q);
 statsRight.fc_se = NaN(1, q);
 statsRight.n = ni; % sample points in each class
 statsRight.w = w; % proportion mapped to each class
+statsRight.RawConfusionMatrix = nij; % proportion mapped to each class
 
 for i=1:q
         
@@ -162,6 +181,18 @@ statsRight.OA_se = sqrt(sum(temp)); clear temp;
 statsRight.UA_se = sqrt(statsRight.UA .* (1-statsRight.UA) ./ (ni - 1));
 
 % Yikes... not sure what to make of SE estimates for PA (Eq. 7)
+Nj = NaN(1,q);
+for j = 1:q
+    
+    Nj(j) = sum(Ni'./ni' .* nij(:, j)); % estimated marginal total number of pixels of reference class j
+    
+    idx = 1:7;
+    temp1 = (Ni(j)^2 * (1-statsRight.PA(j))^2 * statsRight.UA(j) * (1-statsRight.UA(j))) / (ni(j)-1);
+    temp2 = statsRight.PA(j)^2 * sum( Ni(idx~=j).^2 .* (nij(idx~=j, j)' ./ ni(idx~=j)) .* (1-(nij(idx~=j, j)' ./ ni(idx~=j))) ./ (ni(idx~=j)-1) );
+    
+    statsRight.PA_se(j) = sqrt(1/Nj(j)^2 * (temp1 + temp2));
+    
+end
 
 % Estimate standard error of proportional area for each class (Eq. 10)
 for k = 1:q

@@ -67,10 +67,8 @@ MATLAB code developed by Matt Dannenberg
   * class: Column vector (of length n) with class labels assigned to each point, with class labels ranging from 1-q
   * Row vector (of length q) with proportions of total study area mapped as each class
 #### Outputs:
-  * CMmax: confusion matrix based on BEST class label
-  * CMright: confusion matrix based on ACCEPTABLE class label
-  * statsMax: structure with statistics (overall accuracy, user's accuracy, etc.) based on BEST class label
-  * statsRight: structure with statistics (overall accuracy, user's accuracy, etc.) based on ACCEPTABLE class label
+  * statsMax: structure with confusion matrix and statistics (overall accuracy, user's accuracy, etc.) based on BEST class label
+  * statsRight: structure with confusion matrix and statistics (overall accuracy, user's accuracy, etc.) based on ACCEPTABLE class label
 
 ## lmInteractionCV.m
 ### Compare predictions from additive vs. interaction multiple regression models using cross-validation

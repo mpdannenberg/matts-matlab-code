@@ -1,4 +1,4 @@
-function [ CMmax, CMright, statsMax, statsRight ] = fuzzyAA( ref, class, w, Ni )
+function [ statsMax, statsRight ] = fuzzyAA( ref, class, w, Ni )
 % Convert linguistic labels (1-5 scale) for set of sample points to two
 % confusion matrices (based on Gopal & Woodcock 1994, PE&RS):
 %   1) matrix based on best label
@@ -55,6 +55,7 @@ statsMax.fc_se = NaN(1, q);
 statsMax.n = ni; % sample points in each class
 statsMax.w = w; % proportion mapped to each class
 statsMax.RawConfusionMatrix = nij;
+statsMax.NormalizedConfusionMatrix = CMmax;
 
 for i=1:q
         
@@ -152,6 +153,7 @@ statsRight.fc_se = NaN(1, q);
 statsRight.n = ni; % sample points in each class
 statsRight.w = w; % proportion mapped to each class
 statsRight.RawConfusionMatrix = nij; % proportion mapped to each class
+statsRight.NormalizedConfusionMatrix = CMright;
 
 for i=1:q
         

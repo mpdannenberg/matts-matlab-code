@@ -72,9 +72,9 @@ for i=1:n
     
     if bxplt==1
         if size(rgbLine, 1)==1 
-            boxplot(y, g, 'notch','on', 'Color',[0.3 0.3 0.3], 'Symbol','o', 'Widths',0.3, 'OutlierSize',4, 'Jitter',0.5, 'Whisker',2)
+            boxplot(y, g, 'notch','on', 'Color',[0.3 0.3 0.3], 'Symbol','o', 'Widths',0.3, 'OutlierSize',3, 'Jitter',0.5, 'Whisker',2)
         else
-            boxplot(y, g, 'notch','on', 'Color',[0.3 0.3 0.3], 'ColorGroup',g, 'Symbol','o', 'Widths',0.3, 'OutlierSize',4, 'Jitter',0.5, 'Whisker',2)
+            boxplot(y, g, 'notch','on', 'Color',[0.3 0.3 0.3], 'ColorGroup',g, 'Symbol','o', 'Widths',0.3, 'OutlierSize',3, 'Jitter',0.5, 'Whisker',2)
         end
     end
 

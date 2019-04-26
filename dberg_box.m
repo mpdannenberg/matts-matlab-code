@@ -12,8 +12,8 @@ notouts = data(~oidx);
 h = plot([x x], [min(notouts) max(notouts)], '-', 'LineWidth',2, 'Color',EdgeColor);
 hold on;
 fill([x-width/2 x+width/2 x+width/2 x-width/2], [min(qs) min(qs) max(qs) max(qs)],...
-    BoxColor, 'EdgeColor',EdgeColor, 'LineWidth',2);
-plot([x-width/2 x+width/2], [md md], 'LineWidth',2, 'Color',EdgeColor, '-');
+    BoxColor, 'EdgeColor',EdgeColor, 'LineWidth',2, 'LineStyle','-', 'Marker','none');
+plot([x-width/2 x+width/2], [md md], '-', 'LineWidth',2, 'Color',EdgeColor);
 
 if ~isempty(outs)
     plot(repmat(x, size(outs)), outs, 'o', 'LineWidth',2, 'Color',EdgeColor);

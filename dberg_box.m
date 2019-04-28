@@ -1,4 +1,4 @@
-function [h] = dberg_box(x,data,EdgeColor,BoxColor,width)
+function [h] = dberg_box(x,data,EdgeColor,BoxColor,width,sz)
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -16,7 +16,7 @@ fill([x-width/2 x+width/2 x+width/2 x-width/2], [min(qs) min(qs) max(qs) max(qs)
 plot([x-width/2 x+width/2], [md md], '-', 'LineWidth',2, 'Color',EdgeColor);
 
 if ~isempty(outs)
-    plot(repmat(x, size(outs)), outs, 'o', 'LineWidth',2, 'Color',EdgeColor);
+    scatter(repmat(x, size(outs)), outs, sz, EdgeColor, 'o', 'LineWidth',2);
 end
 
 end

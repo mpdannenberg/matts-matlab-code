@@ -36,6 +36,9 @@ wes(i).Film='budapest5'; wes(i).Hex=['#5b1a18';'#fd6467';'#f1bb7b';'#d67236']; i
 wes(i).Film='budapest6'; wes(i).Hex=['#e6a0c4';'#c6cdf7';'#d8a499';'#7294d4']; i=i+1;
 wes(i).Film='dogs1'; wes(i).Hex=['#aa82a7';'#9e2f28';'#deb867';'#110d0e';'#e3ced3';'#948580']; i=i+1;
 wes(i).Film='dogs2'; wes(i).Hex=['#ffd0bc';'#bd9184';'#dc7c40';'#412f2f';'#201718']; i=i+1;
+wes(i).Film='dogs3'; wes(i).Hex=['#eba2b6';'#e7ccaf';'#292176';'#e0bd59']; i=i+1;
+wes(i).Film='french1'; wes(i).Hex=['#5f8065';'#881f24';'#944c34';'#bb9d79';'#275066']; i=i+1;
+wes(i).Film='french2'; wes(i).Hex=['#73a87c';'#c1bc78';'#205d89';'#cf784b']; i=i+1;
 
 idx = strcmp(film, {wes.Film});
 

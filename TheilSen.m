@@ -33,7 +33,7 @@ dy = y2(:, 1) - y2(:, 2);
 
 a = nanmedian(dy ./ dx);
 
-b = median(y) - a*median(x);
+b = nanmedian(y) - a*nanmedian(x);
 
 if nsims>0
     % Significance
